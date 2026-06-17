@@ -1,3 +1,4 @@
+PROJECT 1   TIME SERSE LSTM MODEL
  An end-to-end Apple ($AAPL) Stock Price Predictor dashboard! 📈 Built using a 2-layer LSTM Deep Learning model in PyTorch to capture historical trends over a 60-day lookback window. The system processes 13 technical features (including RSI, MACD, and Bollinger Bands) to evaluate market momentum, achieving a 76.1% Directional Accuracy on unseen test data. I wrapped the entire pipeline into an interactive Streamlit analytics interface for real-time model monitoring.
 
  
@@ -364,6 +365,94 @@ According to the console logs from your execution:
 •	Early Stopping triggered automatically at Epoch 50 because your validation loss ceased to improve, ensuring the network didn't overfit to your training subset.
 •	On the test set, the model achieved a Mean Absolute Error (MAE) of $2.01, meaning its predictions deviated from the actual historical Apple price by an average of just over two dollars.
 •	It achieved a Directional Accuracy of 69.3%, correctly predicting whether the price would go up or down tomorrow roughly 7 out of 10 times.
+
+
+PROJECT 2
+SENTIMENT ANALYSIS  Bidirectional LSTM
+# # The Complete End-to-End Node Architecture
+# ┌───────────────────────────┐
+#                                │     KaggleHub Source      │
+#                                │   (sentiment140 Dataset)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │  Pandas Downsampling Node │
+#                                │  (50,000 Balanced Tweets) │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │   Regex Text Cleaning     │
+#                                │ (URLs, @, #, Scuffs out)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │   Scikit-Learn Splitter   │
+#                                │   (80% Train / 20% Test)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │ Keras Tokenizer & Padding │
+#                                │   (10,000 words max_len)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                     ===============================================
+#                      DEEP LEARNING MODEL GRAPH (NEURAL NETWORK)
+#                     ===============================================
+#                                              │
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │      Embedding Layer      │
+#                                │   (128-Dim Vector Space)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │    Bidirectional Layer    │
+#                                │     (Forward/Backward)    │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │    LSTM Recurrent Core    │
+#                                │    (64 Context Units)     │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │    Dropout Layer (0.5)    │
+#                                │  (Stops Overfitting Node) │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │     Dense Output Layer    │
+#                                │    (Sigmoid Activation)   │
+#                                └─────────────┬─────────────┘
+#                                              │
+#                     ===============================================
+#                      EVALUATION & LIVE METRICS OUTPUTS
+#                     ===============================================
+#                                              ├──────────────────────────────┐
+#                                              ▼                              ▼
+#                                ┌───────────────────────────┐  ┌───────────────────────────┐
+#                                │  Matplotlib & Seaborn CM  │  │   Classification Report   │
+#                                │  (Visual Confusion Matrix)│  │ (Precision/Recall/F1 Score│
+#                                └───────────────────────────┘  └───────────────────────────┘
+#                                              │
+#                     ===============================================
+#                      PRODUCTION APPLICATION LAYER (USER INTERFACE)
+#                     ===============================================
+#                                              │
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │    ipywidgets Text Box    │ ◄── [User Types Text Live]
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │ Live Inference Engine Node│
+#                                │  (Calculates Confidence)  │
+#                                └─────────────┬─────────────┘
+#                                              ▼
+#                                ┌───────────────────────────┐
+#                                │  Local Database Appender  │
+#                                │(/content/updated_data.csv)│
+#                                └───────────────────────────┘
 
 
 
